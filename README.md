@@ -8,7 +8,7 @@ We aim to nowcast **next-day 1% Value-at-Risk (VaR)** for a five-asset liquid po
 Primary users are the **risk team** and **PMs**. Risk needs coverage diagnostics for regulatory reporting; PMs need a number before the close to size exposure. Outputs must be drop-in compatible with the daily risk sheet and interpretable at a glance.
 
 ## Useful Answer & Decision
-**Predictive**: a scalar VaR\_{0.01}(t+1) in percent and dollars for today’s close, plus **explainability** (top feature attributions) and a table of **risk drivers by asset**. Deliverables include a CSV with the VaR timeline and a one-pager summary stored in `/docs/`.
+**Predictive**: a scalar VaR_{0.01}(t+1) in percent and dollars for today’s close, plus **explainability** (top feature attributions) and a table of **risk drivers by asset**. Deliverables include a CSV with the VaR timeline and a one-pager summary stored in `/docs/`.
 
 ## Assumptions & Constraints
 - Assets are liquid; closing prices represent realizable marks.
