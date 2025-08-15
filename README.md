@@ -1,12 +1,24 @@
-# Bootcamp Repository
-## Folder Structure
-- **homework/** → All homework contributions will be submitted here.
-- **project/** → All project contributions will be submitted here.
-- **class_materials/** → Local storage for class materials. Never pushed to
-GitHub.
+# Project Title
+**Stage:** Problem Framing & Scoping (Stage 01)
 
-## Homework Folder Rules
-- Each homework will be in its own subfolder (`homework0`, `homework1`, etc.)
-- Include all required files for grading.
-## Project Folder Rules
-- Keep project files organized and clearly named.
+## Problem Statement
+<write your 1–2 paragraph scoping here>
+
+## Stakeholder & User
+<who uses the results>
+
+## Useful Answer & Decision
+<Descriptive / Predictive / Causal; metric or artifact to deliver>
+
+## Assumptions & Constraints
+- example constraint
+
+## Known Unknowns / Risks
+- example risk
+
+## Lifecycle Mapping
+Goal → Stage → Deliverable
+- Example goal → Problem Framing & Scoping (Stage 01) → Example deliverable
+
+## Repo Plan
+/data/, /src/, /notebooks/, /docs/; update weekly
