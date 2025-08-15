@@ -1,27 +1,37 @@
-# Stakeholder Context Memo — Next-Day VaR Nowcasting
-**Audience:** Risk Team & PMs  
-**Author:** Carolina Zhu  
-**Date:** August 14, 2025
+# Next-Day VaR Nowcasting for a Multi-Asset Portfolio
+**Stage:** Problem Framing & Scoping (Stage 01)
 
-## Problem
-Provide a **next-day 1% VaR** for a five-asset portfolio to inform **overnight position limits** and daily sizing. The number must be defensible, reproducible, and quick to compute before the close.
+## Problem Statement
+We aim to nowcast **next-day 1% Value-at-Risk (VaR)** for a five-asset liquid portfolio (SPY, TLT, GLD, HYG, DXY proxies). The goal is to provide a same-day risk number that the desk can use to set **position limits and overnight sizing**. Historical returns, realized volatility, and market regime features will be standardized into a defensible, reproducible VaR estimate with clear validation.
 
-## Users & Decisions
-- **Risk:** coverage diagnostics, breach alerts, reporting artifacts
-- **PMs:** limit setting and exposure sizing for the next session
+## Stakeholder & User
+Primary users are the **risk team** and **PMs**. Risk needs coverage diagnostics for regulatory reporting; PMs need a number before the close to size exposure. Outputs must be drop-in compatible with the daily risk sheet and interpretable at a glance.
 
-## Required Output
-- VaR\_{0.01}(t+1) in % and $, timeline CSV, and top feature attributions
-- Figures: violations plot, rolling coverage, and Pareto of risk drivers by asset
+## Useful Answer & Decision
+**Predictive**: a scalar VaR_{0.01}(t+1) in percent and dollars for today’s close, plus **explainability** (top feature attributions) and a table of **risk drivers by asset**. Deliverables include a CSV with the VaR timeline and a one-pager summary stored in `/docs/`.
 
-## Data & Constraints
-- Inputs: EOD prices (SPY, TLT, GLD, HYG, DXY), corporate actions adjusted
-- Features: 5–60d vol, correlations, rate/credit spreads, simple regime flags
-- Assumptions: liquidity at close; stable mapping from features to risk on short horizons
+## Assumptions & Constraints
+- Assets are liquid; closing prices represent realizable marks.
+- Features: rolling σ/β, term-structure spreads, simple regime flags; no latent factors beyond what can be justified.
+- Data is end-of-day; no overnight news leakage modeling in Stage 01.
+- Model must run < 1s on laptop-grade hardware; reproducible with pinned versions.
 
-## Validation & Success
-- Target coverage 1.0% ± 0.2% over 250 trading days
-- Kupiec LR test p ≥ 0.05; violation clustering monitored with Christoffersen conditional test (report only)
+## Known Unknowns / Risks
+- Regime breaks (e.g., macro events) degrade calibration.
+- FX translation (DXY proxy) could mis-specify mixed-currency exposure.
+- Serial correlation and heteroskedasticity require robust backtesting.
 
-## Risks
-- Regime shifts, stale proxies, structural breaks; will monitor and re-calibrate thresholds.
+## Lifecycle Mapping
+Goal → Stage → Deliverable  
+- Decision-ready VaR → Problem Framing & Scoping (Stage 01) → stakeholder_memo.md  
+- Clean feature set → Data Ingest & Engineering (Stage 02) → `src/features.py`, datasets in `/data/`  
+- Calibrated model → Modeling & Validation (Stage 03) → VaR series + Kupiec LR test results  
+- Communication → Handoff (Stage 04) → 1-pager and figures in `/docs/`
+
+## Success Criteria
+- **Unconditional coverage** within 0.8–1.2% on rolling 250-day window.
+- **Kupiec LR test** p-value ≥ 0.05; violations clustered ratio not statistically excessive.
+- Reproducible run: `python -m src.compute_var` regenerates the VaR CSV and figures.
+
+## Repo Plan
+`/data/` raw + processed • `/src/` reusable code • `/notebooks/` exploration and reports • `/docs/` memo/slide + figures. Weekly updates or upon material model/data change.
