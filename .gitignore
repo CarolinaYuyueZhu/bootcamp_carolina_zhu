@@ -19,3 +19,5 @@ __pycache__/
 
 # ignore notebook scratch data
 notebooks/data/
+
+.env
