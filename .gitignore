@@ -16,3 +16,6 @@ __pycache__/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
 *-checkpoint.ipynb
+
+# ignore notebook scratch data
+notebooks/data/
