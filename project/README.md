@@ -1,6 +1,6 @@
 # Project: Stock Returns and Market Index Relationship
 
-This project studies the relationship between individual stock returns (e.g., Apple, Microsoft) and the market index (e.g., S&P 500).  
+This project studies the relationship between individual stock returns XXX and the market index YYY.  
 
 ---
 
