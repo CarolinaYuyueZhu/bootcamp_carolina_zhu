@@ -6,7 +6,7 @@ This project studies the relationship between individual stock returns XXX and t
 
 ## Stage 01 – Problem Framing & Scoping
 - **Research Question**: Are individual stock returns strongly correlated with the overall market index?  
-- **Hypothesis**: Stocks such as AAPL and MSFT will show a positive correlation with the S&P 500.  
+- **Hypothesis**: Stocks such as A and B will show a positive correlation with the C.  
 - **Scope**: Use daily closing prices over the past 3–5 years. The project focuses on correlation analysis rather than predictive modeling.
 
 ---
